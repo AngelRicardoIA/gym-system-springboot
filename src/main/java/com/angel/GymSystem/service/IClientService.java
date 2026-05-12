@@ -3,7 +3,7 @@ package com.angel.GymSystem.service;
 import com.angel.GymSystem.model.Client;
 import java.util.List;
 
-public interface IClienteService {
+public interface IClientService {
     public List<Client> listClients();
 
     public Client searchClientByID(Integer idClient);

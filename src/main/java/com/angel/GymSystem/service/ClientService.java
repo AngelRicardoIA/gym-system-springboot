@@ -1,17 +1,17 @@
 package com.angel.GymSystem.service;
 
 import com.angel.GymSystem.model.Client;
-import com.angel.GymSystem.repository.ClienteRepository;
+import com.angel.GymSystem.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ClientService implements IClienteService {
+public class ClientService implements IClientService {
 
     @Autowired
-    private ClienteRepository clienteRepository;
+    private ClientRepository clienteRepository;
 
     @Override
     public List<Client> listClients() {
