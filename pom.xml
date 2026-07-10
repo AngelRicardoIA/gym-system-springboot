@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>4.0.6</version>
+		<version>3.1.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.angel</groupId>
@@ -28,8 +28,19 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+		<joinfaces.version>5.1.2</joinfaces.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.joinfaces</groupId>
+			<artifactId>primefaces-springboot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -43,7 +54,8 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<version>1.18.46</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -51,6 +63,18 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+		<dependencyManagement>
+			<dependencies>
+				<dependency>
+					<groupId>org.joinfaces</groupId>
+					<artifactId>joinfaces-dependencies</artifactId>
+					<version>${joinfaces.version}</version>
+
+					<scope>import</scope>
+				</dependency>
+			</dependencies>
+		</dependencyManagement>
 
 	<build>
 		<plugins>
