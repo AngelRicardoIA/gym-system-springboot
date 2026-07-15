@@ -1,8 +1,10 @@
 # GymSystem
 
-Small practice project made while learning Spring Boot, Spring Data JPA and MySQL.
+A practice project built to learn Spring Boot, Spring Data JPA, and MySQL.
 
-This console application allows basic client management:
+Initially developed as a console application, it has been refactored into a **web application** using JSF and PrimeFaces.
+
+This system allows basic client management:
 - List clients
 - Search clients
 - Add clients
@@ -10,10 +12,10 @@ This console application allows basic client management:
 - Delete clients
 
 The main goal of this project was to better understand:
-- Spring Boot structure
-- JPA repositories
-- Hibernate entity mapping
-- MySQL connection
-- Basic CRUD operations
+- Spring Boot architecture
+- Integrating JSF and PrimeFaces with Spring Boot
+- JPA repositories and Hibernate entity mapping
+- MySQL database connectivity
+- Web-based CRUD operations
 
-This is a learning project made as practice while studying backend development with Java and Spring Boot.
+This is a learning project made as practice while studying backend and web development with Java.
