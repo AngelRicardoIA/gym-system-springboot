@@ -20,6 +20,10 @@
                     <p:menuitem value="Home" icon="pi pi-fw pi pi-user"
                                 update=":clients-form:clients-table"
                                 actionListener="#{indexController.loadData}"/>
+                    <p:menuitem value="New Client" icon="pi pi-fw pi pi-plus"
+                                actionListener="#{indexController.addClient}"
+                                update=":modal-form:client-window"
+                                oncomplete="PF('windowModalClient').show()"/>
                 </p:menubar>
             </div>
             <!--  DataTable  -->
@@ -55,6 +59,20 @@
 
                 </p:dataTable>
             </div>
+        </h:form>
+        <h:form id="modal-form">
+            <p:dialog header="Client Details" showEffect="fade"
+                      modal="true" widgetVar="windowModalClient"
+                      responsive="true">
+                <p:outputPanel id="client-window" class="ui-fluid">
+                    <div class="field">
+                        <p:outputLabel for="nombre">Name</p:outputLabel>
+                        <p:inputText id="nombre"
+                                     value="#{indexController.selectClient.nombre}"
+                                     required="true"/>
+                    </div>
+                </p:outputPanel>
+            </p:dialog>
         </h:form>
     </div>
 

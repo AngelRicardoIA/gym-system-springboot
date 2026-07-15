@@ -20,6 +20,7 @@ public class IndexController {
     @Autowired
     IClientService clientService;
     private List<Client> clients;
+    private Client selectClient;
     private static final Logger logger =
             LoggerFactory.getLogger(IndexController.class);
 
@@ -33,4 +34,7 @@ public class IndexController {
         this.clients.forEach(client -> logger.info(client.toString()));
     }
 
+    public void addClient(){
+        this.selectClient = new Client();
+    }
 }
