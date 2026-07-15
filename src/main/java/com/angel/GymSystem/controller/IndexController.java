@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import org.slf4j.Logger;
 
-@Component
+@Component("indexController")
 @Data
 @ViewScoped
 public class IndexController {

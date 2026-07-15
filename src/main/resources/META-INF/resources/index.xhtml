@@ -12,13 +12,52 @@
 </h:head>
 
 <h:body>
-    <div class="flex justify-content-center flex-wrap card-container orange-container">
-        <div class="flex align-items-center justify-content-center
-                        w-20rem h-4rem bg-orange-500 font-bold
-                        text-white-900 border-round m-2">
-            <h3>GYM SYSTEM</h3>
-        </div>
+    <div class="card">
+        <h:form id="clients-form">
+            <p:growl id="messages" showDetails="true"/>
+            <div class="card">
+                <p:menubar>
+                    <p:menuitem value="Home" icon="pi pi-fw pi pi-user"
+                                update=":clients-form:clients-table"
+                                actionListener="#{indexController.loadData}"/>
+                </p:menubar>
+            </div>
+            <!--  DataTable  -->
+            <div class="card">
+                <p:dataTable value="#{indexController.clients}" var="client"
+                             id="clients-table" widgetVar="clientsTable">
+                    <f:facet name="header">
+                        <div class="flex justify-content-center flex-wrap card-container blue-container">
+                            <div class="flex align-items-center
+                            justify-content-center
+                            w-20rem h-4rem bg-blue-500 font-bold
+                            text-white-900 border-round m-2">
+                                <h3>GYM SYSTEM</h3>
+                            </div>
+                        </div>
+                    </f:facet>
+
+                    <p:column    headerText="Id">
+                        <h:outputText value="#{client.id}"/>
+                    </p:column>
+
+                    <p:column    headerText="Name">
+                        <h:outputText value="#{client.nombre}"/>
+                    </p:column>
+
+                    <p:column    headerText="Last Name">
+                        <h:outputText value="#{client.apellido}"/>
+                    </p:column>
+
+                    <p:column    headerText="Membership">
+                        <h:outputText value="#{client.membresia}"/>
+                    </p:column>
+
+                </p:dataTable>
+            </div>
+        </h:form>
     </div>
+
 </h:body>
 
 </html>
