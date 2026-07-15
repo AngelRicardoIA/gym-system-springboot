@@ -3,8 +3,11 @@ package com.angel.GymSystem.controller;
 import com.angel.GymSystem.model.Client;
 import com.angel.GymSystem.service.IClientService;
 import jakarta.annotation.PostConstruct;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import lombok.Data;
+import org.primefaces.PrimeFaces;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -36,5 +39,29 @@ public class IndexController {
 
     public void addClient(){
         this.selectClient = new Client();
+    }
+
+    public void saveClient(){
+        logger.info("Client: " + this.selectClient);
+        //Add
+        if(this.selectClient.getId() == null){
+            this.clientService.saveClient(this.selectClient);
+            this.clients.add(this.selectClient);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Client Added"));
+        }
+        //Modify
+        else {
+            this.clientService.saveClient(this.selectClient);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Client Updated"));
+        }
+        //Hide window
+        PrimeFaces.current().executeScript("PF('windowModalClient').hide()");
+        //Update table
+        PrimeFaces.current().ajax().update("clients-form:messages",
+                "client-form:clients-table");
+        //Reset
+        this.selectClient = null;
     }
 }
