@@ -11,7 +11,6 @@ import org.primefaces.PrimeFaces;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import org.slf4j.Logger;
 
@@ -24,8 +23,7 @@ public class IndexController {
     IClientService clientService;
     private List<Client> clients;
     private Client selectClient;
-    private static final Logger logger =
-            LoggerFactory.getLogger(IndexController.class);
+    private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @PostConstruct
     public void init(){
@@ -43,25 +41,27 @@ public class IndexController {
 
     public void saveClient(){
         logger.info("Client: " + this.selectClient);
-        //Add
+
         if(this.selectClient.getId() == null){
             this.clientService.saveClient(this.selectClient);
             this.clients.add(this.selectClient);
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Client Added"));
-        }
-        //Modify
-        else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Client Added"));
+        } else {
             this.clientService.saveClient(this.selectClient);
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Client Updated"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Client Updated"));
         }
-        //Hide window
+
         PrimeFaces.current().executeScript("PF('windowModalClient').hide()");
-        //Update table
-        PrimeFaces.current().ajax().update("clients-form:messages",
-                "client-form:clients-table");
-        //Reset
+        PrimeFaces.current().ajax().update("clients-form:messages", "clients-form:clients-table");
         this.selectClient = null;
+    }
+
+    public void deleteClient(){
+        logger.info("Deleting client: " + this.selectClient);
+        this.clientService.deleteClient(this.selectClient);
+        this.clients.remove(selectClient);
+        this.selectClient = null;
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Client Deleted"));
+        PrimeFaces.current().ajax().update("clients-form:messages", "clients-form:clients-table");
     }
 }
